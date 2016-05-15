@@ -17,7 +17,9 @@ var DEFAULT_OPTIONS = {
     jsonOutputFilename: 'grunt-cache-bust.json',
     length: 16,
     separator: '.',
-    queryString: false
+    queryString: false,
+    nestedMappings: false,
+    nestedMappingsPattern: []
 };
 
 module.exports = function() {
@@ -73,12 +75,18 @@ module.exports = function() {
                 }
             }
 
-            if (file.match('assets/images/') || file.match('assets/fonts/')) {
-              var file2 = file.split('assets/')[1];
-              var newFilename2 = newFilename.split('assets/')[1];
-              obj[file2] = newFilename2;
+            if (opts.nestedMappings) {
+              opts.nestedMappingsPattern.map(function(mapping) {
+                if (file.match(mapping.pattern)) {
+                  var splitAt = mapping.splitAt;
+                  var file2 = file.split(splitAt)[1];
+                  var newFilename2 = newFilename.split(splitAt)[1];
+
+                  obj[file2] = newFilename2;
+                }
+              });
             }
-            
+
             obj[file] = newFilename;
 
             return obj;
