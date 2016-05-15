@@ -73,6 +73,12 @@ module.exports = function() {
                 }
             }
 
+            if (file.match('assets/images/') || file.match('assets/fonts/')) {
+              var file2 = file.split('assets/')[1];
+              var newFilename2 = newFilename.split('assets/')[1];
+              obj[file2] = newFilename2;
+            }
+            
             obj[file] = newFilename;
 
             return obj;
