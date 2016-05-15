@@ -196,26 +196,26 @@ Add Array of Objects with `pattern` and `splitAt` as keys.
 Example
 ```js
 cacheBust: {
-  generate: {
-    options: {
-      assets: ['**'],
-      baseDir: 'build/',
-      jsonOutputFilename:'staticFilesCacheMapping.json',
-      jsonOutput: true,
-      nestedMappings: true,
-      nestedMappingsPattern: [
-        {
-          pattern: 'assets/images/',
-          splitAt: 'assets/'
+    generate: {
+        options: {
+            assets: ['**'],
+            baseDir: 'build/',
+            jsonOutputFilename:'staticFilesCacheMapping.json',
+            jsonOutput: true,
+            nestedMappings: true,
+            nestedMappingsPattern: [
+                {
+                    pattern: 'assets/images/',
+                    splitAt: 'assets/'
+                },
+                {
+                    pattern: 'assets/fonts/',
+                    splitAt: 'assets/'
+                },
+            ]
         },
-        {
-          pattern: 'assets/fonts/',
-          splitAt: 'assets/'
-        },
-      ]
-    },
-    src: ['build/assets/**/*.css']
-  }
+        src: ['build/assets/**/*.css']
+    }
 }
 ```
 
